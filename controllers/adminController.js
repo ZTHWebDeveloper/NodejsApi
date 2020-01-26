@@ -37,7 +37,7 @@ const findBylocation = ()=>{
 const minimumDistace = (point1,point2,point3)=>{
    return new Promise((resolve,reject)=>{
     Title.find({'point_id':[point1,point2,point3]})
-        .populate('location')
+        .populate('point_id')
         .exec((err , data)=>{
             if(err) reject(err);
             resolve(data);

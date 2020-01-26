@@ -38,13 +38,21 @@ router.get('/location/:lat/:long',(req,res,next)=>{
            //res.json(array);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
-                    res.json({points:result,message:'Get all successfully'});
+                    let arr=[];
+                    let j=0;
+                    result.forEach((da)=>{
+                        arr[j++]={
+                            '_id':da._id,
+                            'title':da.title,
+                            'point_id':da['point_id']['_id'],
+                            'lati':da['point_id']['lati'],
+                            'longi':da['point_id']['longi']
+                        }
+                    });
+                  res.json({arr,msg:'Successfully'});
                 })
-                .catch(err=>{
-                    res.json(err);
-                });
-
-            
+                .catch();
+                
         })
         .catch(err=>{
             res.json({con:false,msg:err});
