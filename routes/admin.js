@@ -38,7 +38,7 @@ router.get('/location/:lat/:long',(req,res,next)=>{
            //res.json(array);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
-                    res.json(result);
+                    res.json({points:result,message:'Get all successfully'});
                 })
                 .catch(err=>{
                     res.json(err);
