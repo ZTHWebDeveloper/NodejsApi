@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const mapSchema = new Schema({
-    lat:{
+    lati:{
         type:Number,
         required:true
     },
-    long:{
+    longi:{
         type:Number,
         required:true
     }

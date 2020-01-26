@@ -5,6 +5,8 @@ const TimSort = require('timsort');
 const router = express.Router();
 
 router.post('/',Map.save);
+
+
 router.get('/location/:lat/:long',(req,res,next)=>{
     let lat = req.param("lat");
     let long = req.param("long");
@@ -15,8 +17,8 @@ router.get('/location/:lat/:long',(req,res,next)=>{
             let i = 0;
             
             result.forEach((data) => {
-                let latitute = data.lat;
-                let longitute = data.long;
+                let latitute = data.lati;
+                let longitute = data.longi;
                 let startPoint = new GeoPoint(Number(lat),Number(long));
                 let endPoint = new GeoPoint(latitute, longitute);
                 let distance = startPoint.distanceTo(endPoint,true);

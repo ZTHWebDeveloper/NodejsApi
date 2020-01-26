@@ -2,8 +2,8 @@ const Map = require('../models/map');
 const Title = require('../models/title');
 const save = (req,res)=>{
     let map = new Map({
-        lat:req.body.lat,
-        long:req.body.long
+        lati:req.body.lati,
+        longi:req.body.longi
     });
    
     map.save()
