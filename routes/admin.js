@@ -32,10 +32,6 @@ router.get('/location/:lat/:long',(req,res,next)=>{
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
-           //5e2d245201b04710bc6ab17c
-           //5e2d24bb01b04710bc6ab180
-           //5e2d247801b04710bc6ab17e
-           //res.json(array);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
                     let arr=[];
@@ -51,21 +47,14 @@ router.get('/location/:lat/:long',(req,res,next)=>{
                     });
                   res.json(arr);
                 })
-                .catch();
+                .catch(err=>{
+                    res.json(err);
+                });
                 
         })
         .catch(err=>{
             res.json({con:false,msg:err});
         });
 
-});
-
-router.get('/geo/:lat/:long',(req,res)=>{
-    let lat = req.param("lat");
-    let long = req.param("long");
-    const startPoint = new GeoPoint(Number(lat),Number(long));
-                const endPoint = new GeoPoint(1.2344, 1.345567);
-                const distance = startPoint.distanceTo(endPoint,true);
-                res.json(distance);
 });
 module.exports = router;
