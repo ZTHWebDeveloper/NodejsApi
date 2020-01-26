@@ -32,6 +32,7 @@ router.get('/location/:lat/:long',(req,res,next)=>{
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
+           
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
                     let arr=[];
