@@ -25,12 +25,14 @@ router.get('/location/:lat/:long',(req,res,next)=>{
                     "distance":distance,
                     "id":data['_id']
                 };
-                //res.json(distance);
             });
            
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
+           //5e2d245201b04710bc6ab17c
+           //5e2d24bb01b04710bc6ab180
+           //5e2d247801b04710bc6ab17e
            //res.json(array);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
@@ -44,7 +46,6 @@ router.get('/location/:lat/:long',(req,res,next)=>{
         })
         .catch(err=>{
             res.json({con:false,msg:err});
-           // console.log(err+i);
         });
 
 });
