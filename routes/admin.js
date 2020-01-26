@@ -49,7 +49,7 @@ router.get('/location/:lat/:long',(req,res,next)=>{
                             'longi':da['point_id']['longi']
                         }
                     });
-                  res.json({arr,msg:'Successfully'});
+                  res.json(arr);
                 })
                 .catch();
                 
