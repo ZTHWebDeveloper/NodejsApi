@@ -14,6 +14,7 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
     
     Map.findBylocation(city)
         .then(result=>{
+            //res.json(result);
             let array=[];
             let i = 0;
             
@@ -33,6 +34,7 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
+           //res.json(array);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
                     let arr=[];

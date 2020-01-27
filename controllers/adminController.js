@@ -11,11 +11,13 @@ const save = (req,res)=>{
             let city = req.body.city;
             let point_id = result._id;
             let arryTitle = req.body.titlelist;
+            //res.json(arryTitle);
             arryTitle.forEach(titleField=> {
                 let title = new Title({
                  title:titleField,
                  city:city,
                  point_id:point_id
+
                 });
                 title.save()
                 .then(result=>{
