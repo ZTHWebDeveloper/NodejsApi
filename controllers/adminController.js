@@ -10,24 +10,24 @@ const save = (req,res)=>{
         .then(result =>{
             let city = req.body.city;
             let point_id = result._id;
-            let arryTitle = req.body.titlelist;
+            let arryTitle = req.body.title;
             //res.json(arryTitle);
-            arryTitle.forEach(titleField=> {
+            arryTitle.forEach(arrayField => {
                 let title = new Title({
-                 title:titleField,
-                 city:city,
-                 point_id:point_id
-
-                });
-                title.save()
-                .then(result=>{
-                    res.json(result);
-                })
-                .catch(err=>{
-                    res.json(err);
-                });
-            });
-            
+                    title:arrayField,
+                    city:city,
+                    point_id:point_id
+   
+                   });
+                   title.save()
+                   .then(result=>{
+                       res.json(result);
+                   })
+                   .catch(err=>{
+                       res.json(err);
+                   });
+             });
+     
         })
         .catch(err =>{
             res.json({msg:err});
