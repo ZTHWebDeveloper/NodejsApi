@@ -8,19 +8,24 @@ const save = (req,res)=>{
    
     map.save()
         .then(result =>{
-            let title = new Title({
-                title:req.body.title,
-                city:req.body.city,
-                point_id:result._id
-
-            });
-            title.save()
+            let city = req.body.city;
+            let point_id = result._id;
+            let arryTitle = req.body.titlelist;
+            arryTitle.forEach(titleField=> {
+                let title = new Title({
+                 title:titleField,
+                 city:city,
+                 point_id:point_id
+                });
+                title.save()
                 .then(result=>{
                     res.json(result);
                 })
                 .catch(err=>{
                     res.json(err);
                 });
+            });
+            
         })
         .catch(err =>{
             res.json({msg:err});
