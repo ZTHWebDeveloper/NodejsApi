@@ -10,7 +10,7 @@ const save = (req,res)=>{
         .then(result =>{
             let city = req.body.city;
             let point_id = result._id;
-            let arryTitle = req.body.title;
+            let arryTitle = req.body.titlelist;
             //res.json(arryTitle);
             arryTitle.forEach(arrayField => {
                 let title = new Title({
