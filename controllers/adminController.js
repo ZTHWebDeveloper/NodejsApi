@@ -1,5 +1,6 @@
 const Map = require('../models/map');
 const Title = require('../models/title');
+
 const save = (req,res)=>{
     let map = new Map({
         lati:req.body.lati,
@@ -56,8 +57,26 @@ const minimumDistace = (point1,point2,point3)=>{
    });
 }
 
+const search = ()=>{
+    return new Promise((resolve,reject)=>{
+        Title.find({},(err,data)=>{
+            if(err) reject(err);
+            resolve(data);
+        })
+    });
+}
+const searchId = (search_id)=>{
+   return new Promise((resolve,reject)=>{
+        Map.find({'_id':search_id},(err,data)=>{
+            if(err) reject(err);
+            resolve(data);
+        })
+   });
+}
 module.exports ={
     save,
     findBylocation,
     minimumDistace,
+    search,
+    searchId
 }

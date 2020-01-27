@@ -6,6 +6,38 @@ const router = express.Router();
 
 router.post('/',Map.save);
 
+router.get('/search',(req,res)=>{
+    Map.search()
+        .then(result=>{
+            let array=[];
+            let k = 0;
+            result.forEach(searach=>{
+                array[k++] ={
+                    'title':searach['title'][0],
+                    'city':searach.city,
+                    'pointId':searach.point_id
+                }
+            });
+           res.json(array);
+        })
+        .catch(err=>{
+            res.json(err);
+        });
+
+});
+
+router.get('/search/:id',(req,res)=>{
+    let search_id = req.param("id");
+    Map.searchId(search_id)
+        .then(result=>{
+            res.json(result);
+        })
+        .catch(err=>{
+            res.json(err);
+        });
+
+
+})
 
 router.get('/location/:city/:lat/:long',(req,res,next)=>{
     let lat = req.param("lat");
@@ -14,7 +46,6 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
     
     Map.findBylocation(city)
         .then(result=>{
-            //res.json(result);
             let array=[];
             let i = 0;
             
