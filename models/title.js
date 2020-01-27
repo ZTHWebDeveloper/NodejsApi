@@ -3,8 +3,12 @@ const Schema = mongoose.Schema;
 
 const titleSchema = new Schema({
     title:{
-        type:String,
+        type:[String],
         required:true
+    },
+    city:{
+        type:String,
+        required:true,
     },
     point_id:{
         type:Schema.Types.ObjectId,

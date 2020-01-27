@@ -7,32 +7,32 @@ const router = express.Router();
 router.post('/',Map.save);
 
 
-router.get('/location/:lat/:long',(req,res,next)=>{
+router.get('/location/:city/:lat/:long',(req,res,next)=>{
     let lat = req.param("lat");
     let long = req.param("long");
+    let city = req.param("city");
     
-    Map.findBylocation()
+    Map.findBylocation(city)
         .then(result=>{
             let array=[];
             let i = 0;
             
             result.forEach((data) => {
-                let latitute = data.lati;
-                let longitute = data.longi;
+                let latitute = data['point_id']['lati'];
+                let longitute = data['point_id']['longi'];
                 let startPoint = new GeoPoint(Number(lat),Number(long));
                 let endPoint = new GeoPoint(latitute, longitute);
                 let distance = startPoint.distanceTo(endPoint,true);
                 
                 array[i++]={
                     "distance":distance,
-                    "id":data['_id']
+                    "id":data['point_id']['_id']
                 };
+               
             });
-           
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
-           
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
                     let arr=[];
@@ -46,7 +46,11 @@ router.get('/location/:lat/:long',(req,res,next)=>{
                             'longi':da['point_id']['longi']
                         }
                     });
-                  res.json(arr);
+                    //5e2ec575c5ae823bbc41d6eb
+                    //5e2ec3e76c7d850770048a30
+                    //5e2ec38c6c7d850770048a2c
+                    res.json(arr);
+                    
                 })
                 .catch(err=>{
                     res.json(err);

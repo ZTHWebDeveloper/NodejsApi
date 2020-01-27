@@ -10,7 +10,9 @@ const save = (req,res)=>{
         .then(result =>{
             let title = new Title({
                 title:req.body.title,
+                city:req.body.city,
                 point_id:result._id
+
             });
             title.save()
                 .then(result=>{
@@ -25,12 +27,14 @@ const save = (req,res)=>{
         });
 }
 
-const findBylocation = ()=>{
+const findBylocation = (city)=>{
    return new Promise((resolve,reject)=>{
-        Map.find({},(err,data)=>{
-            if(err) reject(err);
-            resolve(data);
-        })
+        Title.find({'city':city})
+            .populate('point_id')
+            .exec((err , data)=>{
+                if(err) reject(err);
+                resolve(data);
+            })
    });
 }
 
