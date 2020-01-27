@@ -21,7 +21,7 @@ const save = (req,res)=>{
                    });
                    title.save()
                    .then(result=>{
-                       res.json(result);
+                      // res.json(result);
                    })
                    .catch(err=>{
                        res.json(err);

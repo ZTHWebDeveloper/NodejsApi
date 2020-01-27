@@ -40,9 +40,10 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
                     let arr=[];
                     let j=0;
                     result.forEach((da)=>{
+                        //res.json(da[0]);
                         arr[j++]={
                             '_id':da._id,
-                            'title':da.title,
+                            'title':da['title'][0],
                             'point_id':da['point_id']['_id'],
                             'lati':da['point_id']['lati'],
                             'longi':da['point_id']['longi']
