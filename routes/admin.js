@@ -30,7 +30,7 @@ router.get('/search/:id',(req,res)=>{
     let search_id = req.param("id");
     Map.searchId(search_id)
         .then(result=>{
-            res.json(result);
+            res.json({'lat':result[0].lati,'longi':result[0].longi});
         })
         .catch(err=>{
             res.json(err);
