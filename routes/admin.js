@@ -64,7 +64,7 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
-           res.json(array);
+           //res.json(array);
         //    let arr=[];
         //     let j=0;
         //    array.forEach((point_distance)=>{
