@@ -53,6 +53,7 @@ const minimumDistace = (point1,point2,point3)=>{
         .exec((err , data)=>{
             if(err) reject(err);
             resolve(data);
+        
         })
    });
 }

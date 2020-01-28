@@ -36,7 +36,6 @@ router.get('/search/:id',(req,res)=>{
             res.json(err);
         });
 
-
 })
 
 router.get('/location/:city/:lat/:long',(req,res,next)=>{
@@ -65,13 +64,38 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
-           //res.json(array);
+           res.json(array);
+        //    let arr=[];
+        //     let j=0;
+        //    array.forEach((point_distance)=>{
+        //       res.json(point_distance);
+        //          Map.minimumDistace(point_distance.id)
+        //             .then(result=>{
+        //                 res.json(result[0]);
+        //                 arr[j++]={
+        //                     'point_distance':point_distance.distance,
+        //                     '_id':result._id,
+        //                     'title':result[0]['city'],
+        //                     'point_id':point_distance.id,
+        //                     'lati':result[0]['point_id']['lati'],
+        //                     'longi':result[0]['point_id']['longi']
+        //                 }
+                        
+        //             })
+        //             .catch(err=>{
+        //                 res.json(err);
+        //             });
+
+
+        //    });
+        //    res.json(arr);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id)
                 .then(result=>{
                     let arr=[];
                     let j=0;
                     result.forEach((da)=>{
                         //res.json(da[0]);
+
                         arr[j++]={
                             '_id':da._id,
                             'title':da['title'][0],
@@ -80,9 +104,7 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
                             'longi':da['point_id']['longi']
                         }
                     });
-                    //5e2ec575c5ae823bbc41d6eb
-                    //5e2ec3e76c7d850770048a30
-                    //5e2ec38c6c7d850770048a2c
+                   
                     res.json(arr);
                     
                 })
