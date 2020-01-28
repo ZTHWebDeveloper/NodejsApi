@@ -46,9 +46,9 @@ const findBylocation = (city)=>{
    });
 }
 
-const minimumDistace = (point1,point2,point3)=>{
+const minimumDistace = (point1,point2,point3,point4,point5)=>{
    return new Promise((resolve,reject)=>{
-    Title.find({'point_id':[point1,point2,point3]})
+    Title.find({'point_id':[point1,point2,point3,point4,point5]})
         .populate('point_id')
         .exec((err , data)=>{
             if(err) reject(err);

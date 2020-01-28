@@ -89,7 +89,7 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
 
         //    });
         //    res.json(arr);
-            Map.minimumDistace(array[0].id,array[1].id,array[2].id)
+            Map.minimumDistace(array[0].id,array[1].id,array[2].id,array[3].id,array[4].id)
                 .then(result=>{
                     let arr=[];
                     let j=0;
