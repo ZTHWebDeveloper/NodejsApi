@@ -9,16 +9,16 @@ router.post('/',Map.save);
 router.get('/search',(req,res)=>{
     Map.search()
         .then(result=>{
-            let array=[];
-            let k = 0;
-            result.forEach(searach=>{
-                array[k++] ={
-                    'title':searach['title'][0],
-                    'city':searach.city,
-                    'pointId':searach.point_id
-                }
-            });
-           res.json(array);
+                let array=[];
+                let k = 0;
+                result.forEach(searach=>{
+                    array[k++] ={
+                        'title':searach['title'][0],
+                        'city':searach.city,
+                        'pointId':searach.point_id
+                    }
+                });
+            res.json(array);
         })
         .catch(err=>{
             res.json(err);
@@ -38,6 +38,18 @@ router.get('/search/:id',(req,res)=>{
 
 })
 
+router.get('/city/:id',(req,res)=>{
+    let city = req.param("id")
+    Map.findBylocation(city)
+        .then(data=>{
+            console.log(data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        
+
+})
 router.get('/location/:city/:lat/:long',(req,res,next)=>{
     let lat = req.param("lat");
     let long = req.param("long");
@@ -64,31 +76,7 @@ router.get('/location/:city/:lat/:long',(req,res,next)=>{
            TimSort.sort(array,(a,b)=>{
               return a.distance-b.distance;
            });
-           //res.json(array);
-        //    let arr=[];
-        //     let j=0;
-        //    array.forEach((point_distance)=>{
-        //       res.json(point_distance);
-        //          Map.minimumDistace(point_distance.id)
-        //             .then(result=>{
-        //                 res.json(result[0]);
-        //                 arr[j++]={
-        //                     'point_distance':point_distance.distance,
-        //                     '_id':result._id,
-        //                     'title':result[0]['city'],
-        //                     'point_id':point_distance.id,
-        //                     'lati':result[0]['point_id']['lati'],
-        //                     'longi':result[0]['point_id']['longi']
-        //                 }
-                        
-        //             })
-        //             .catch(err=>{
-        //                 res.json(err);
-        //             });
 
-
-        //    });
-        //    res.json(arr);
             Map.minimumDistace(array[0].id,array[1].id,array[2].id,array[3].id,array[4].id)
                 .then(result=>{
                     let arr=[];
